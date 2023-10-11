@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
 
-
 class ListInactiveTileHistory extends StatelessWidget {
   final history;
   ListInactiveTileHistory({super.key, required this.history});
@@ -12,8 +11,7 @@ class ListInactiveTileHistory extends StatelessWidget {
     var startDateTime = history.startDateTime.toDate();
     var endDateTime = history.endDateTime.toDate();
 
-    var difference =
-        endDateTime.difference(startDateTime).inSeconds;
+    var difference = endDateTime.difference(startDateTime).inSeconds;
     var hour = difference ~/ 3600;
     var minute = difference ~/ 60 % 60;
     var second = difference % 60;
@@ -44,10 +42,10 @@ class ListInactiveTileHistory extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 16,
                       )),
-                  trailing:
-                  Text(r'R$ ' + history.price.toString(),
+                  trailing: Text(r'R$ ' + history.price.toString(),
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w400
                       )),
                   subtitle: Text(
                       'Entrada às ${startDateTime.hour.toString().padLeft(2, '0')}:${(startDateTime.minute % 60).toString().padLeft(2, '0')}h.'),
@@ -59,14 +57,28 @@ class ListInactiveTileHistory extends StatelessWidget {
                   leading: CircleAvatar(
                     child: Text(history.room.number.toString()),
                   ),
-                  title: Text(history.room.name,
-                      style: const TextStyle(
-                        fontSize: 15,
-                      )),
-                  trailing: Text(textTime,
-                      style: const TextStyle(
-                        fontSize: 15,
-                      )),
+                  title: Row(
+                    children: [
+                      Text(history.room.name,
+                          style: const TextStyle(
+                            fontSize: 15,
+                          )),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        '•',
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(textTime,
+                          style: const TextStyle(
+                            fontSize: 15,
+                          ))
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 5,

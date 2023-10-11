@@ -24,7 +24,7 @@ class HistoryView extends StatelessWidget {
 
   buildAppBar() {
     return AppBar(
-      title: const Text('Reservas'),
+      title: const Text('Histórico'),
     );
   }
 
@@ -33,7 +33,7 @@ class HistoryView extends StatelessWidget {
       if (_controller.state.value == 1) {
         return ListHistory();
       } else if (_controller.state.value == 2) {
-        return const EmptyList();
+        return EmptyList();
       } else if (_controller.state.value == 3) {
         return const ErrorList();
       }

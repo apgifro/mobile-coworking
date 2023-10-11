@@ -100,10 +100,10 @@ class RoomController extends GetxController {
       onError: (e) => {state.value = 3},
     );
     availableRooms.assignAll(listRooms);
+    state.value = 1;
     if (availableRooms.isEmpty) {
       state.value = 2;
     }
-    state.value = 1;
   }
 
   activateRoom(room) {
@@ -115,16 +115,15 @@ class RoomController extends GetxController {
     _timerController.startTimer();
     getRoom();
     Get.back();
-    _navigationController.currentIndex.value = 1;
   }
 
   deactivateRoom() {
     final _historyController = Get.put(HistoryController());
-    _timerController.stopTimer();
     _historyController.updateHistory();
+    _timerController.stopTimer();
     activeRoom = null;
     _historyController.getHistory();
-    Get.back();
     getRoom();
+    Get.back();
   }
 }

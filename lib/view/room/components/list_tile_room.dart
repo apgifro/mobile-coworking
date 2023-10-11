@@ -61,7 +61,7 @@ class ListTileRoom extends StatelessWidget {
   buildTextStyle() {
     return const TextStyle(
       fontSize: 15,
-      color: Colors.black54,
+      fontWeight: FontWeight.w400
     );
   }
 }

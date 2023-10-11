@@ -30,7 +30,7 @@ class HistoryController extends GetxController {
 
     var userEmail = FirebaseAuth.instance.currentUser?.email;
 
-    var data = History(
+    activeHistory = History(
       id: '',
       price: _controller.activeRoom!.price,
       startDateTime: Timestamp.now(),
@@ -39,7 +39,10 @@ class HistoryController extends GetxController {
       userEmail: userEmail!,
     );
 
-    _firestore.collection("history").add(data.toFirestore());
+    var document = _firestore.collection("history").add(activeHistory!.toFirestore());
+    document.then((value) {
+      activeHistory!.id = value.id;
+    });
   }
 
   updateHistory() async {
@@ -53,7 +56,11 @@ class HistoryController extends GetxController {
     var timeInRoom = _timer_controller.remainingTime.value;
     var priceRoom = _controller.activeRoom!.price;
     var costRoom = timeInRoom * priceRoom / 60 / 60;
-    activeHistory!.price = costRoom.roundToDouble();
+    print(priceRoom);
+    print(timeInRoom);
+    print(costRoom);
+    activeHistory!.price = double.parse(costRoom.toStringAsFixed(2));
+    print(activeHistory!.price);
 
     final deactivateRoom =
         _firestore.collection("history").doc(activeHistory!.id);
@@ -99,9 +106,9 @@ class HistoryController extends GetxController {
       onError: (e) => {state.value = 3},
     );
     availableHistory.assignAll(listHistory);
+    state.value = 1;
     if (availableHistory.isEmpty) {
       state.value = 2;
     }
-    state.value = 1;
   }
 }

@@ -36,7 +36,7 @@ class RoomView extends StatelessWidget {
       if (_roomController.state.value == 1) {
         return ListAvailableRoom();
       } else if (_roomController.state.value == 2) {
-        return const EmptyList();
+        return EmptyList();
       } else if (_roomController.state.value == 3) {
         return const ErrorList();
       }

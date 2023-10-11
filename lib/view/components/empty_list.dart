@@ -5,10 +5,15 @@ class EmptyList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-        child: Text(
-      'Todas as salas estão ocupadas.',
-      style: TextStyle(fontSize: 17.5),
-    ));
+    return Center(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Image.asset('assets/empty.png'),
+            const Text('Tudo tão vazio por aqui...', style: TextStyle(fontSize: 18),),
+          ],
+        ),
+      ),
+    );
   }
 }
